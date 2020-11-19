@@ -86,7 +86,14 @@ MyBitString MyBitString::conjunction_r(MyBitString b, int len) {
 		else tmp[len-1-i] = '0';
 	}
 	tmp[len] = '\0';
-	return MyBitString(tmp); //call cinstructor
+	string str = string(tmp);
+	delete[]tmp;
+	int found = str.find("1");
+	if (found != std::string::npos) {
+		str = str.substr(found);
+	}
+	else str = "0";
+	return MyBitString(str); //call cinstructor
 }
 
 MyBitString MyBitString::conjunction(MyBitString b) {

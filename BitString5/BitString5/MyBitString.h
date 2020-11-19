@@ -17,8 +17,8 @@ public:
 	MyBitString(string init_str);
 	MyBitString(const MyBitString& b);
 	~MyBitString();
-	MyBitString& operator=(const MyBitString &x); //overloading an operator = as a class method
-	friend MyBitString operator&(MyBitString &a, MyBitString &b); //overloading an operator = as a friend function
+	MyBitString& operator=(const MyBitString &x); //overloading operator = as a class method
+	friend MyBitString operator&(MyBitString &a, MyBitString &b); //overloading operator & as a friend function
 	friend ostream& operator<<(ostream& out, MyBitString& a);
 	friend istream& operator>>(istream& out, MyBitString& a);
 };
