@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <ProjectOutputs>D:\YandexDisk\YandexDisk\Job\СибАДИ\Дисциплины\Технологии и методы программирования\Лабортаорные С++\BitString5\Debug\BitString5.exe</ProjectOutputs>
-  <ContentFiles></ContentFiles>
-  <SatelliteDlls></SatelliteDlls>
-  <NonRecipeFileRefs></NonRecipeFileRefs>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\YandexDisk\YandexDisk\Job\СибАДИ\Дисциплины\Технологии и методы программирования\Лабортаорные С++\BitString5\Debug\BitString5.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
 </Project>

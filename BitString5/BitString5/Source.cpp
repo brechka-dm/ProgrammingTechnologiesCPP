@@ -18,5 +18,4 @@ int main(int argc, char* argv[]) {
 		c = a & b;
 		c.f_outp((const char*)argv[3]); //argv[3] - c.txt
 	}
-
 }

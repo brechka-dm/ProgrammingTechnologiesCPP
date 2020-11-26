@@ -102,9 +102,16 @@ MyBitString& MyBitString::operator=(const MyBitString& x) { //overloading = oper
 	return *this; //return self
 }
 
+unsigned char& MyBitString::operator[](int i) {
+	if ((i >= 0) && (i < len)) return mas[i];
+	unsigned char error = -1; //error identifier
+	return error; 
+}
+
 MyBitString operator&(MyBitString& a, MyBitString& b) { //overloading & operator
 	return a.conjunction(b); //call inner method
 }
+
 ostream& operator<<(ostream& out, MyBitString& a) { //overloading output
 	for (int j = 0; j < a.len; j++) 
 		out << a.mas[j]; //put all items to ostream out
