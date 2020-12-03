@@ -3,10 +3,10 @@
 #include <fstream>
 using namespace std;
 
-void MyBitString::mas_from_string(string str) {
+void MyBitString::mas_from_string(string str) { 
 	char tmp;
-	len = str.length();
-	mas = new unsigned char[len];
+	len = str.length(); 
+	mas = new unsigned char[len]; 
 	for (int j = 0; j < len; j++) mas[j] = '0';
 	int i = 0;
 	tmp = str[i];
@@ -75,7 +75,8 @@ void MyBitString::f_outp(string filename) {
 	file.close();
 }
 
-MyBitString MyBitString::conjunction_r(MyBitString b, int len) {
+MyBitString& MyBitString::conjunction_r(const MyBitString& b, int len) const{ //const method gets const reference, returns reference
+																			  // b defines const as b not change inside method
 	int al = this->len - 1;
 	int bl = b.len - 1;
 	char* tmp = new char[len + 1];
@@ -93,41 +94,43 @@ MyBitString MyBitString::conjunction_r(MyBitString b, int len) {
 		str = str.substr(found);
 	}
 	else str = "0";
-	return MyBitString(str);
+	MyBitString* res = new MyBitString(str); //create new MyBitString, get pointer
+	return *res; //dereference pointer
 }
 
-MyBitString MyBitString::conjunction(MyBitString b) {
+MyBitString& MyBitString::conjunction(const MyBitString& b) const{ //const method gets const reference, returns reference
 	if (len > b.len) return conjunction_r(b, b.len);
 	else return conjunction_r(b, len);
-
 }
-MyBitString& MyBitString::operator=(const MyBitString& x) { //overloading = operator
-	if (mas) delete[] mas; //delete this->mas if exists
-	len = x.len; // this->len=x.len
-	mas = new unsigned char[len]; //allocate dynamic memory of len items
-	for (int i = 0; i < len; i++) mas[i] = x.mas[i]; //copy array
-	return *this; //return self
+
+MyBitString& MyBitString::operator=(const MyBitString& x) { // x defines const as x not change inside method
+	if (&x == this) {return *this;} //check self copying
+	if (mas) delete[] mas; //if this->mas exists delete mas
+	len = x.len; //this->len=x.len
+	mas = new unsigned char[len]; //allocate dynamic memory
+	for (int i = 0; i < len; i++) mas[i] = x.mas[i]; //copying mas items
+	return *this; //dereference pointer
 }
 
 unsigned char& MyBitString::operator[](int i) {
-	if ((i >= 0) && (i < len)) return mas[i];
-	unsigned char error = -1; //error identifier
-	return error; 
+	unsigned char error = -1;
+	if ((i < 0) || (i > len)) return error; //if i out of bounds return error
+	return mas[len-i-1]; //reverse bit numbers
 }
 
-MyBitString operator&(MyBitString& a, MyBitString& b) { //overloading & operator
-	return a.conjunction(b); //call inner method
+MyBitString& operator& (const MyBitString& a, const MyBitString& b) { //a and b defines const as they not change inside method
+	return a.conjunction(b); //method conjunction must be const
 }
 
-ostream& operator<<(ostream& out, MyBitString& a) { //overloading output
-	for (int j = 0; j < a.len; j++) 
-		out << a.mas[j]; //put all items to ostream out
+ostream& operator<<(ostream& out, const MyBitString& a) {
+	for (int i = 0; i < a.len; i++) out << a.mas[i]; //put all items into out
 	return out; 
 }
-istream& operator>>(istream& inp, MyBitString& a) { //overloading input
+
+istream& operator>>(istream& in, MyBitString& a) {
 	string inp_str;
-	getline(inp, inp_str); //get string from istream inp
-	if (a.mas) delete[] a.mas; //delete mas if it not null
-	a.mas_from_string(inp_str); //call private method
-	return(inp);
+	getline(in, inp_str); //get line from in
+	if (a.mas) delete[] a.mas; //if this->mas exists, delete this->mas
+	a.mas_from_string(inp_str); //call method
+	return in;
 }

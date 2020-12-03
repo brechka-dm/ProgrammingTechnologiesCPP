@@ -3,23 +3,23 @@
 using namespace std;
 class MyBitString
 {
-	unsigned char* mas;
-	int len;
-	void mas_from_string(string str);
-	MyBitString conjunction_r(MyBitString b, int len);
+	unsigned char* mas; //pointer to array
+	int len; //array length
+	void mas_from_string(string str); //private method
 public:
-	void inp();
-	void f_inp(string filename);
-	void outp();
-	void f_outp(string filename);
-	MyBitString conjunction(MyBitString b);
-	MyBitString();
-	MyBitString(string init_str);
-	MyBitString(const MyBitString& b);
-	~MyBitString();
-	MyBitString& operator=(const MyBitString &x); //overloading operator = as a class method
-	unsigned char& operator[](int i); //overloading operator [] as a class method
-	friend MyBitString operator&(MyBitString &a, MyBitString &b); //overloading operator & as a friend function
-	friend ostream& operator<<(ostream& out, MyBitString& a);
-	friend istream& operator>>(istream& out, MyBitString& a);
+	void inp(); //manual input
+	void f_inp(string filename); //file input
+	void outp(); //console output
+	void f_outp(string filename); //file output
+	MyBitString& conjunction(const MyBitString& b) const; 
+	MyBitString& conjunction_r(const MyBitString& b, int len) const;
+	MyBitString(); //default constructor
+	MyBitString(string init_str); //init constructor
+	MyBitString(const MyBitString& b); //copy constructor
+	~MyBitString(); //destructor
+	MyBitString& operator=(const MyBitString& x); //overloading = as method
+	unsigned char& operator[](int i);  //overloading [] as method
+	friend MyBitString& operator& (const MyBitString& a, const MyBitString& b);  //overloading & as friend function
+	friend ostream& operator<<(ostream& out, const MyBitString& a); //overloading << as friend function
+	friend istream& operator>>(istream& in, MyBitString& a); //overloading >> as friend function
 };

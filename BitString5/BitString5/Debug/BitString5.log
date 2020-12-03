@@ -1,2 +1,5 @@
-﻿  Source.cpp
+﻿  MyBitString.cpp
+  Source.cpp
+  Создание кода...
+D:\YandexDisk\YandexDisk\Job\СибАДИ\Дисциплины\Технологии и методы программирования\Лабортаорные С++\BitString5\BitString5\MyBitString.cpp(117): warning C4172: возвращение адреса локальной или временной переменной : error
   BitString5.vcxproj -> D:\YandexDisk\YandexDisk\Job\СибАДИ\Дисциплины\Технологии и методы программирования\Лабортаорные С++\BitString5\Debug\BitString5.exe
